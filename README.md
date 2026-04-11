@@ -43,7 +43,6 @@ SlackQL bridges the gap:
 | Layer | Technology |
 |-------|-----------|
 | Bot Framework | Slack Bolt (Python) |
-| Bot Framework | Slack Bolt (Python)
 | AI Engine | Gemini API |
 | Database | PostgreSQL (any SQL DB supported) |
 | Containerization | Docker + Docker Compose |
