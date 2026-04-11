@@ -1,0 +1,7 @@
+slack_bolt
+google-genai
+pydantic_settings
+pydantic
+psycopg2-binary
+sqlalchemy
+pytest
