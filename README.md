@@ -73,7 +73,7 @@ docker compose up --build -d
 This starts two containers: the SlackQL bot and a PostgreSQL database preloaded with a demo e-commerce dataset (customers, products, orders, order_items).
 
 ### 3. Configure Slack App
-See [docs/SLACK_SETUP.md](docs/SLACK_SETUP.md) for step-by-step Slack app configuration.
+See slack docs [https://api.slack.com/apps] for step-by-step Slack app configuration.
 
 ### 4. Try it
 In any Slack channel where the bot is invited:
