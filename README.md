@@ -46,7 +46,6 @@ SlackQL bridges the gap:
 | AI Engine | Gemini API |
 | Database | PostgreSQL (any SQL DB supported) |
 | Containerization | Docker + Docker Compose |
-| Infrastructure | Terraform (AWS ECS) |
 | CI/CD | GitHub Actions |
 
 ## Quick Start
