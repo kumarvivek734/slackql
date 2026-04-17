@@ -1,3 +1,5 @@
+--Create mock data using the schema below.
+
 CREATE TABLE customers (
     CUSTOMERID VARCHAR(1000) PRIMARY KEY,
     CUSTOMER_NAME VARCHAR(1000),
