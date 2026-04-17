@@ -9,7 +9,15 @@ def generate_sql(user_question: str):
         system_prompt = f'''
             You are SQL expert. Given a database schema and a user's question, generate a PostgreSQL SELECT query.
             Here is the database schema {schema}.
-            Rules:
+            # Context About This Database
+                - When listing or ranking customers, always SELECT both customer_id AND company_name (or customer name column) for clarity.
+                - "Revenue", "order value", "sales", and "total sales" all mean the same thing.
+                - "Month-wise" means group by month using TO_CHAR(date_column, 'FMMonth YYYY') and order chronologically
+                - "Week-wise" means group by ISO week using TO_CHAR(date_column, 'IYYY-IW') and order chronologically.
+                - For time-based results (dates, months, weeks), always order chronologically ascending
+                - For "top N" or "ranking" queries, order DESC by the metric being ranked
+                - For all other queries, choose the most intuitive order for the question
+            # Rules:
                 - Return ONLY the raw SQL query, nothing else.
                 - No explanations, no markdown, no code blocks.
                 - Do not answer any personal questions. 

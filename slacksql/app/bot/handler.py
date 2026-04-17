@@ -18,10 +18,31 @@ def handle_ask_command(ack, command, say):
             if "error" in query_output:
                 say(f"Error: {query_output['error']}")
                 return
-            msg = f"*Query:* `{sql_generated}`\n"
-            msg += f"*Results:* {query_output['row_count']} rows ({query_output['execution_time_ms']}ms)\n\n"
-            for row in query_output["rows"]:
-                msg += " | ".join(str(v) for v in row.values()) + "\n"
+            rows = query_output.get("rows", [])
+            msg = f"*Query:*\n```\n{sql_generated}\n```\n"
+            msg += f"*Results:* {len(rows)} rows ({query_output.get('execution_time_ms', 0)}ms)\n\n"
+
+            if rows:
+                columns = list(rows[0].keys())
+                # Calculate column widths based on header + all values
+                col_widths = {
+                    col: max(len(col), max(len(str(r[col])) for r in rows))
+                    for col in columns
+                }
+                
+                # Build header row
+                header = " | ".join(col.ljust(col_widths[col]) for col in columns)
+                separator = "-+-".join("-" * col_widths[col] for col in columns)
+                
+                msg += "```\n"
+                msg += header + "\n"
+                msg += separator + "\n"
+                for row in rows:
+                    msg += " | ".join(str(row[col]).ljust(col_widths[col]) for col in columns) + "\n"
+                msg += "```"
+            else:
+                msg += "_No rows returned._"
+
             say(msg)
     except Exception as e:
         say(f"Something went wrong: {e}")
